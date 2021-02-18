@@ -1,0 +1,31 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2>Item List</h2>
+  </div>
+  <div class="panel-body">
+    <input type="text" [(ngModel)]="filterStatus"/>
+    <button (click)="filter()">Filter</button>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of items | filter: filterStatus">
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.email}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <mat-paginator
+    [length]="this.totalPages"
+    [pageSize]="this.pageSize"
+    [pageSizeOptions]="[5]"
+    (page)="onPaginate($event)">
+  </mat-paginator>
+</div>
